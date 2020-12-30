@@ -25,6 +25,30 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyDFWyjHU5-zN0Cb8T7Y3sSRgYrrCyX_MqU",
+          authDomain: "studentprogress-7af65.firebaseapp.com",
+          projectId: "studentprogress-7af65",
+          storageBucket: "studentprogress-7af65.appspot.com",
+          messagingSenderId: "771304997835",
+          appId: "1:771304997835:web:16c6e534731b19788bec4e"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
+
+      
+      <script src="app.js" defer></script>
+
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +63,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
   </body>
 </html>

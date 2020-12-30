@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import './App.css';
 import firebase from './firebase'
 import Auth from './auth'
-import Testcomponent from './testcomponent'
-
 
 function App() {
   
@@ -21,7 +19,6 @@ function App() {
   return (
     <>
       <div id='userDetails'></div>
-      <Testcomponent />
       <Auth />
       <ul>
         {entries.map(entry => (

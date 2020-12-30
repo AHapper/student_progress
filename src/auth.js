@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import firebase from './firebase'
 
 function Auth () {
@@ -7,49 +7,44 @@ function Auth () {
 
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    const handleSignIn = event => {
-        console.log(event.target.value);
+    const [inHidden, setInHidden] = useState(false);
+    const [outHidden, setOutHidden] = useState(true);
+    const [welcomeUser, setWelcome] = useState('')
+
+    const handleSignIn = () => {
         auth.signInWithPopup(provider);
+        setInHidden(true)
+        setOutHidden(false)
     }
 
-    const handleSignOut = event => {
-        console.log(event.target.value);
+    const handleSignOut = () => {
+        setInHidden(false);
+        setOutHidden(true)
         auth.signOut();
     }
 
-    const whenSignedIn = document.getElementById('whenSignedIn');
-    const whenSignedOut = document.getElementById('whenSignedOut');
-
-    const userDetails = document.getElementById('userDetails');
-
-
-
     /// Sign in event handlers
-
 
     auth.onAuthStateChanged(user => {
         if (user) {
             // signed in
-            whenSignedIn.hidden = false;
-            whenSignedOut.hidden = true;
-            userDetails.innerHTML = `<h3>Hello ${user.displayName}!</h3> <p>User ID: ${user.uid}</p>`;
+            let dearUser = user.displayName
+            setWelcome(dearUser);
         } else {
             // not signed in
-            whenSignedIn.hidden = true;
-            whenSignedOut.hidden = false;
-            userDetails.innerHTML = '';
+            setWelcome('');
         }
     });
 
     return (
     <div>
-        <div>HELLO FROM auth.js</div>
-        <section id="whenSignedOut">
+        <section id="whenSignedOut" hidden={inHidden}>
+            <div ><h1>A Student Progress App</h1></div>
             <button id="signInBtn" onClick={handleSignIn} className="btn btn-primary">Sign in with Google</button>
         </section>
         
-        <section id="whenSignedIn" hidden="true">
-            <div id="userDetails"></div>
+        <section id="whenSignedIn" hidden={outHidden}>
+            <div id="userDetails"><h2>Hello {welcomeUser}!</h2></div>
             <button id="signOutBtn" onClick={handleSignOut} className="btn btn-primary">Sign Out</button>
         </section>
     </div>
